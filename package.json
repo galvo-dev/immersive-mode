@@ -1,0 +1,48 @@
+{
+  "name": "@galvo/immersive-mode",
+  "version": "0.1.0",
+  "description": "True full-screen immersive mode for React Native games on Android — hides the system bars AND excludes the full-height left/right edges from the back gesture, so whole-screen-swipe games stop triggering navigation. No-op on iOS and web.",
+  "keywords": [
+    "react-native",
+    "expo",
+    "expo-module",
+    "android",
+    "immersive",
+    "fullscreen",
+    "gesture-navigation",
+    "system-gesture-exclusion",
+    "game"
+  ],
+  "license": "MIT",
+  "homepage": "https://galvo.dev",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/galvo-dev/immersive-mode.git"
+  },
+  "bugs": {
+    "url": "https://github.com/galvo-dev/immersive-mode/issues"
+  },
+  "main": "index.ts",
+  "types": "index.ts",
+  "sideEffects": false,
+  "files": [
+    "index.ts",
+    "use-immersive-game-mode.ts",
+    "expo-module.config.json",
+    "android",
+    "ios",
+    "LICENSE",
+    "README.md",
+    "!android/build",
+    "!android/.gradle",
+    "!ios/build"
+  ],
+  "peerDependencies": {
+    "expo": ">=50.0.0",
+    "react": "*",
+    "react-native": "*"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
