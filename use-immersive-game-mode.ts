@@ -11,7 +11,9 @@
 import { useEffect } from 'react';
 import { AppState, Platform } from 'react-native';
 
-import { ImmersiveMode } from './index';
+// Import the native surface DIRECTLY, never through ./index — index re-exports this hook, so
+// going back through it forms a require cycle Metro warns about on every launch.
+import { ImmersiveMode } from './native';
 
 export function useImmersiveGameMode(active: boolean, edgeBandDp = 48): void {
   useEffect(() => {

@@ -1,29 +1,17 @@
-// JS surface for the immersive-mode native module. Uses requireOptionalNativeModule so this
-// is a hard no-op wherever the native module is absent — web (output:'single'), or a JS-only
-// context before a dev build — instead of throwing. On iOS the native stub resolves and the
-// calls are no-ops. Consumers use the useImmersiveGameMode hook (src/games/lib), not this
-// directly.
-import { requireOptionalNativeModule } from 'expo';
+// JS surface for the immersive-mode native module. Consumers use the useImmersiveGameMode hook
+// (re-exported below, or via src/games/lib), not the native object directly.
+//
+// THIS FILE IS A BARREL ONLY. The native object lives in ./native and the hook in
+// ./use-immersive-game-mode, and both import DOWNWARD — never back through here. Defining the
+// value here while also re-exporting the hook that consumes it made a require cycle
+// (index -> use-immersive-game-mode -> index) that Metro logged on every launch. Cycles are
+// permitted but resolve to whichever binding initialised first, so the hook could see
+// `ImmersiveMode` as undefined depending on which module Metro entered from.
+import { ImmersiveMode } from './native';
 
-interface ImmersiveModeNative {
-  /** Enter sticky-immersive full-screen and exclude full-height L/R bands (Android only). */
-  enter(edgeBandDp: number): void;
-  /** Restore the system bars and clear the gesture-exclusion bands. */
-  exit(): void;
-}
+export { ImmersiveMode } from './native';
 
-const native = requireOptionalNativeModule<ImmersiveModeNative>('ImmersiveMode');
-
-export const ImmersiveMode = {
-  enter(edgeBandDp = 48): void {
-    native?.enter(edgeBandDp);
-  },
-  exit(): void {
-    native?.exit();
-  },
-};
+/** The ergonomic surface most consumers want — one line in a game screen. */
+export { useImmersiveGameMode } from './use-immersive-game-mode';
 
 export default ImmersiveMode;
-
-// The ergonomic surface most consumers want — one line in a game screen.
-export { useImmersiveGameMode } from './use-immersive-game-mode';

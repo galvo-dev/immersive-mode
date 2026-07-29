@@ -1,7 +1,7 @@
 {
   "name": "@galvo/immersive-mode",
-  "version": "0.1.1",
-  "description": "True full-screen immersive mode for React Native games on Android — hides the system bars AND excludes the full-height left/right edges from the back gesture, so whole-screen-swipe games stop triggering navigation. No-op on iOS and web.",
+  "version": "0.1.2",
+  "description": "True full-screen immersive mode for React Native games on Android \u2014 hides the system bars AND excludes the full-height left/right edges from the back gesture, so whole-screen-swipe games stop triggering navigation. No-op on iOS and web.",
   "keywords": [
     "react-native",
     "expo",
@@ -31,6 +31,7 @@
   "sideEffects": false,
   "files": [
     "index.ts",
+    "native.ts",
     "use-immersive-game-mode.ts",
     "expo-module.config.json",
     "android",
